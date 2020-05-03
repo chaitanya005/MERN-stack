@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 mongoose
-  .connect("mongodb://localhost:27017/tshirt", {
+  .connect("mongodb://localhost:27017/myapp", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -15,5 +15,5 @@ mongoose
 const port = 8000;
 
 app.listen(port, () => {
-  console.log(`app is running at ${port}`);
+  console.log(`listening at ${port}`);
 });
