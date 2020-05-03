@@ -12,7 +12,8 @@ mongoose
     console.log("DB CONNECTED");
   });
 
-const port = 8000;
+//using environmnet variable
+const port = process.env.PORT || 7000;
 
 app.listen(port, () => {
   console.log(`listening at ${port}`);
