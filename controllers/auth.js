@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const { check, validationResult } = require("express-validator");
 
-
+//exporting to routers
 //singup
 exports.signup = (req, res) => {
   const errors = validationResult(req);
