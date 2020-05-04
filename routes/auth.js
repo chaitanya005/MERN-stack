@@ -5,7 +5,7 @@ const { check, validationResult } = require("express-validator");
 //importing routes from controllers 
 const { signout, signup } = require("../controllers/auth");
 
-//checkers 
+//validations 
 router.post(
   "/signup",
   [
