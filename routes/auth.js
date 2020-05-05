@@ -1,31 +1,34 @@
-var express = require("express");
-var router = express.Router();
-const { check, validationResult } = require("express-validator");
+const express = require("express")
+const router = express.Router()
+const {check} = require("express-validator")
 
-//importing routes from controllers 
-const { signout, signup } = require("../controllers/auth");
+//we are importing the method from controller
+const {signout,signup,signin,isSignedIn} = require("../controllers/auth")
 
-//validations 
 router.post(
-  "/signup",
-  [
-    check("name", "name should be at least 3 char").isLength({ min: 3 }),
-    check("email", "email is required").isEmail(),
-    check("password", "password should be at least 3 char").isLength({ min: 3 })
-  ],
-  signup
-);
+    "/signup",
+    //errors from express- validator 
+    [
+    check("name","name should be atleast 5 chars") .isLength({ min: 5 }),
+    check("email","email is required") .isEmail(),
+    check("password") .isLength({ min: 5 })
+    ],signup);
 
-//sign in validation check
 router.post(
-  "/signin",
-  [
-    check("email", "email is required").isEmail(),
-    check("password", "password field is required").isLength({ min: 1 })
-  ],
-  signin
-);
+    "/signin",
+    //errors from express- validator 
+    [
+    check("email","email is required") .isEmail(),
+    check("password","Password field is required") .isLength({ min: 5 })
+    ],signin);
 
-router.get("/signout", signout);
+
+router.get('/testroute',isSignedIn,(req,res) =>{
+    res.json(req.auth)  //the token is take from a particualar user and displays _id of that particular USER!!
+});
+
+
+router.get("/signout",signout)
+
 
 module.exports = router;
