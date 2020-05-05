@@ -15,6 +15,17 @@ router.post(
   ],
   signup
 );
+
+//sign in validation check
+router.post(
+  "/signin",
+  [
+    check("email", "email is required").isEmail(),
+    check("password", "password field is required").isLength({ min: 1 })
+  ],
+  signin
+);
+
 router.get("/signout", signout);
 
 module.exports = router;
