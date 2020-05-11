@@ -1,13 +1,13 @@
 const express = require("express")
 const router = express.Router()
-const {check} = require("express-validator")
+const {check,validatonResult} = require("express-validator")
 
 //we are importing the method from controller
 const {signout,signup,signin,isSignedIn} = require("../controllers/auth")
 
 router.post(
     "/signup",
-    //errors from express- validator 
+    //checking errors from express- validator 
     [
     check("name","name should be atleast 5 chars") .isLength({ min: 5 }),
     check("email","email is required") .isEmail(),
@@ -22,7 +22,7 @@ router.post(
     check("password","Password field is required") .isLength({ min: 5 })
     ],signin);
 
-
+//testroute
 router.get('/testroute',isSignedIn,(req,res) =>{
     res.json(req.auth)  //the token is take from a particualar user and displays _id of that particular USER!!
 });
