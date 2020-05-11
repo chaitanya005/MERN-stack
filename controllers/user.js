@@ -70,4 +70,19 @@ exports.pushOrderInPurchaseList = (req, res, next) => {
       amount: req.body.order.amount,
       transaction_id: req.body.order.transaction_id
     });
+    
+      //store this in DB
+      User.findOneAndUpdate(
+      { _id: req.profile._id },
+      { $push: { purchases: purchases } },
+      { new: true },
+      (err, purchases) => {
+        if (err) {
+          return res.status(400).json({
+            error: "Unable to save purchase list"
+          });
+        }
+        next();
+      }
+    );
   });
