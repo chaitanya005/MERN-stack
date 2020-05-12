@@ -10,7 +10,7 @@ const categorySchema = new mongoose.Schema(
       unique: true
     }
   },
-  { timestamps: true }
+  { timestamps: true }//record the time and stores in db
 );
 
 module.exports = mongoose.model("Category", categorySchema);
